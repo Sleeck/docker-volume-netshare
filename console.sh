@@ -70,7 +70,7 @@ fi
 
 setup_ssh
 
-NETSHARE_VOLUME=/var/lib/docker/volumes/netshare
+NETSHARE_VOLUME=/opt/netshare
 
 if [ ! -d $NETSHARE_VOLUME ]; then
     mkdir -p $NETSHARE_VOLUME
@@ -84,7 +84,7 @@ cat > /etc/respawn.conf << EOF
 /sbin/getty 115200 tty2
 /sbin/getty 115200 tty1
 /usr/sbin/sshd -D
-/usr/sbin/docker-volume-netshare_linux nfs --basedir=/var/lib/docker/volumes/netshare
+/usr/sbin/docker-volume-netshare_linux nfs --basedir=/opt/netshare
 EOF
 
 for i in ttyS{0..4} ttyAMA0; do
