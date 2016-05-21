@@ -33,7 +33,7 @@ ros service enable /var/lib/rancher/conf/docker-volume-netshare-service.yml
 ros service start docker-volume-netshare
 ```
 ```
-ros config set rancher.docker.storage_context: docker-volume-netshare
+ros config set rancher.docker.storage_context docker-volume-netshare
 ```
 
 ___
