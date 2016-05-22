@@ -1,10 +1,13 @@
-FROM rancher/os-console:v0.4.5
+FROM rancher/os-debianconsole:v0.4.5
 
 MAINTAINER Vincent Vaz <contact@sleeck.eu>
 
-ADD docker-volume-netshare_0.16_linux_amd64-bin /usr/sbin/docker-volume-netshare_linux
+RUN apt-get install wget -y
+RUN wget $(wget -qO- https://api.github.com/repos/ContainX/docker-volume-netshare/releases/latest | grep browser_download_url |grep "amd64.deb" | head -n 1 | cut -d '"' -f 4) -O /tmp/current.deb
+RUN dpkg -i /tmp/current.deb
+RUN rm /tmp/current.deb
 ADD console.sh /usr/sbin/console.sh
-RUN chmod +x /usr/sbin/docker-volume-netshare_linux
 RUN chmod +x /usr/sbin/console.sh
 
+ENTRYPOINT ["/usr/sbin/entry.sh"]
 CMD ["/usr/sbin/console.sh"]
