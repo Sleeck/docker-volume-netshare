@@ -84,7 +84,7 @@ cat > /etc/respawn.conf << EOF
 /sbin/getty 115200 tty2
 /sbin/getty 115200 tty1
 /usr/sbin/sshd -D
-/usr/sbin/docker-volume-netshare_linux nfs --basedir=/opt/netshare
+/usr/sbin/docker-volume-netshare_linux nfs --basedir=/opt/netshare --verbose
 EOF
 
 for i in ttyS{0..4} ttyAMA0; do
